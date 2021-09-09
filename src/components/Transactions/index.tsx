@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { api } from "../../service/api";
+import { TransactionConxtext } from "../../TransacrionContext";
 import { Container } from "./style";
 
 interface TransactionsProps{
@@ -12,6 +13,8 @@ interface TransactionsProps{
 }
 
 export default function Transactions() {
+    const data = useContext(TransactionConxtext)
+
     const [transactions, setTransactions] = useState<TransactionsProps[]>([])
 
     useEffect(() => {
@@ -39,7 +42,7 @@ export default function Transactions() {
                                 {
                                     new Intl.NumberFormat('pt-BR', {
                                         style: 'currency',
-                                        currency: 'BRl'
+                                        currency: 'BRL'
                                     }).format(transaction.amount)
                                 }
                             </td>
